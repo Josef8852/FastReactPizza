@@ -1,15 +1,19 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./ui/Home";
-import Menu from "./feautures/menu/Menu";
+import Menu, {MenuLoader} from "./feautures/menu/Menu";
 import Cart from "./feautures/cart/Cart";
 import CreateOrder from "./feautures/order/CreateOrder";
-import Order from "./feautures/order/Order";
+import Order, { OrderLoader } from "./feautures/order/Order";
 import AppLayout from "./ui/AppLayout";
+import Error from "./ui/Error";
+import { OrderAction } from "./feautures/order/OrderAction";
 
 const router = createBrowserRouter([
   {
-    element: <AppLayout />, // Layout Route
+     // Layout Route
+    element: <AppLayout />,
+    errorElement : <Error/>  ,
     children: [ // Nested Routes
       {
         path: "/",
@@ -17,7 +21,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/menu",
-        element: <Menu />
+        element: <Menu />,
+        loader: MenuLoader,
+        errorElement : <Error/>  
       },
       {
         path: "/cart",
@@ -25,11 +31,14 @@ const router = createBrowserRouter([
       },
       {
         path: "/order/new", 
-        element : <CreateOrder/>
+        element: <CreateOrder />,
+        action  :OrderAction 
       },
       {
         path: "/order/:orderID",
-        element : <Order/>
+        element: <Order />, 
+        loader: OrderLoader,
+        errorElement : <Error/>  
       }
     ]
   },

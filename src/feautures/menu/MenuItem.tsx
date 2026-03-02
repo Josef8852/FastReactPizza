@@ -1,6 +1,7 @@
 import { formatCurrency } from "../../utils/helpers";
+import type { MenuItemProps } from "./MenuTypes";
 
-const MenuItem: React.FC = ({ pizza }) => {
+const MenuItem: React.FC<MenuItemProps> = ({ pizza }) => {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
 
   return (

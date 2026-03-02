@@ -1,30 +1,31 @@
-const API_URL = 'https://react-fast-pizza-api.jonas.io/api';
+import type { Order } from "../feautures/order/OrderActionTypes";
+
+const API_URL = "https://react-fast-pizza-api.jonas.io/api";
 
 export const getMenu = async () => {
   const res = await fetch(`${API_URL}/menu`);
 
-  // fetch won't throw error on 400 errors (e.g. when URL is wrong), so we need to do it manually. This will then go into the catch block, where the message is set
-  if (!res.ok) throw Error('Failed getting menu');
+  if (!res.ok) throw Error("Failed getting menu");
 
   const { data } = await res.json();
   return data;
-}
+};
 
-export const getOrder = async (id) =>  {
+export const getOrder = async (id: string) => {
   const res = await fetch(`${API_URL}/order/${id}`);
   if (!res.ok) throw Error(`Couldn't find order #${id}`);
 
   const { data } = await res.json();
   return data;
-}
+};
 
-export const createOrder = async (newOrder) =>  {
+export const createOrder = async (newOrder: Order) => {
   try {
     const res = await fetch(`${API_URL}/order`, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(newOrder),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
 
@@ -32,22 +33,23 @@ export const createOrder = async (newOrder) =>  {
     const { data } = await res.json();
     return data;
   } catch {
-    throw Error('Failed creating your order');
+    throw Error("Failed creating your order");
   }
-}
-export const updateOrder = async (id , updateObj) =>  {
+};
+
+
+export const updateOrder = async (id: string, updateObj: object) => {
   try {
     const res = await fetch(`${API_URL}/order/${id}`, {
-      method: 'PATCH',
+      method: "PATCH",
       body: JSON.stringify(updateObj),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
 
     if (!res.ok) throw Error();
-    // We don't need the data, so we don't return anything
   } catch (err) {
-    throw Error('Failed updating your order');
+    if (err) throw Error("Failed updating your order");
   }
-}
+};

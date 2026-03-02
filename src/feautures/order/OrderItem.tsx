@@ -1,4 +1,6 @@
-const OrderItem : React.FC = ({ item, isLoadingIngredients, ingredients }) => {
+import { formatCurrency } from "../../utils/helpers";
+
+const OrderItem: React.FC = ({ item, isLoadingIngredients, ingredients }) => {
   const { quantity, name, totalPrice } = item;
 
   return (
