@@ -1,5 +1,3 @@
-
-
  type CartIem = {
   pizzaId: number,
   name: string,
