@@ -1,7 +1,7 @@
-import { isRouteErrorResponse, useNavigate, useRouteError} from 'react-router-dom';
+import { isRouteErrorResponse, useRouteError} from 'react-router-dom';
+import LinkButton from './LinkButton';
 
 const NotFound :React.FC = ()  => {
-  const navigate = useNavigate();
   const error  = useRouteError();
 
   
@@ -9,7 +9,7 @@ const NotFound :React.FC = ()  => {
     <div>
       <h1>Something went wrong 😢</h1>
       {isRouteErrorResponse(error) ? <h1>{error.status} - {error.data}</h1> : null}
-      <button onClick={() => navigate(-1)}>&larr; Go back</button>
+      <LinkButton route="-1">&larr; Go back</LinkButton>
     </div>
   );
 }

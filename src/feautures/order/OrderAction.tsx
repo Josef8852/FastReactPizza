@@ -1,7 +1,7 @@
 import { redirect, type ActionFunctionArgs } from "react-router-dom"
 import { createOrder } from "../../services/apiRestaurant";
 import { isValidPhone } from "../../utils/helpers";
-import { type OrderErrors ,type Order } from "./OrderActionTypes";
+import { type OrderErrors ,type Order } from "./OrderTypes";
 
 
 export const OrderAction = async ({ request }: ActionFunctionArgs): Promise<Response| OrderErrors> => {
