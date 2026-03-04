@@ -2,6 +2,9 @@ import { redirect, type ActionFunctionArgs } from "react-router-dom"
 import { createOrder } from "../../services/apiRestaurant";
 import { isValidPhone } from "../../utils/helpers";
 import { type OrderErrors ,type Order } from "./OrderTypes";
+import Store from "../../Store";
+import { clearCart } from "../cart/cartSlice";
+
 
 
 export const OrderAction = async ({ request }: ActionFunctionArgs): Promise<Response| OrderErrors> => {
@@ -22,6 +25,7 @@ export const OrderAction = async ({ request }: ActionFunctionArgs): Promise<Resp
 
   const errors: OrderErrors = {}
   
+  
   if (!isValidPhone(data.phone)) 
   {
     errors.phone = "Please give us your correct Phone Number . We might need to contact you.";
@@ -29,6 +33,7 @@ export const OrderAction = async ({ request }: ActionFunctionArgs): Promise<Resp
   
   if (Object.keys(errors).length === 0) {
     const newOrder = await createOrder(order);
+    Store.dispatch(clearCart());
     return  redirect(`/order/${newOrder.id}`);
   }
   else {

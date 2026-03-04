@@ -3,33 +3,14 @@ import { Form, useActionData, useNavigation } from "react-router-dom";
 import Button from "../../ui/Button";
 import { useSelector } from "react-redux";
 import type { MainState } from "../../StoreTypes";
+import { selectCart } from "../cart/cartSelectors";
+import EmptyCart from "../cart/EmptyCart";
+import { getTotalCartPrice } from "../cart/cartSelectors";
+import { formatCurrency } from "../../utils/helpers";
 
-
-const fakeCart = [
-  {
-    pizzaId: 12,
-    name: "Mediterranean",
-    quantity: 2,
-    unitPrice: 16,
-    totalPrice: 32,
-  },
-  {
-    pizzaId: 6,
-    name: "Vegetale",
-    quantity: 1,
-    unitPrice: 13,
-    totalPrice: 13,
-  },
-  {
-    pizzaId: 11,
-    name: "Spinach and Mushroom",
-    quantity: 1,
-    unitPrice: 15,
-    totalPrice: 15,
-  },
-];
 
 const CreateOrder: React.FC = () => {
+  
   const navigation = useNavigation();
 
   const isSubmitting = navigation.state === "submitting";
@@ -38,9 +19,22 @@ const CreateOrder: React.FC = () => {
     
    const username  = useSelector((state : MainState) => state.user.username);
 
-  //const [withPriority, setWithPriority] = useState(false);
+  const [withPriority, setWithPriority] = useState<boolean>(false);
+  
+  
+  let totalPrice: number = useSelector(getTotalCartPrice);
 
-  const cart = fakeCart;
+  
+  if (withPriority) totalPrice = totalPrice + (totalPrice * 0.2);
+
+  const cart = useSelector(selectCart);
+
+   
+
+  
+  if (!cart.length) return <EmptyCart />;
+  
+ 
 
   return (
     <div className="py-6 px-4">
@@ -72,9 +66,9 @@ const CreateOrder: React.FC = () => {
             type="checkbox"
             name="priority"
             id="priority"
+            value={String(withPriority)}
             className="h-6 w-6 accent-yellow-400 focus:ring focus:ring-yellow-400 focus:ring-offset-2 focus:outline-none"
-            //value={withPriority}
-            //onChange={(e) => setWithPriority(e.target.checked)}
+            onChange={(e) => setWithPriority(e.target.checked)}
           />
           <label className="font-medium" htmlFor="priority">Want to yo give your order priority?</label>
         </div>
@@ -84,7 +78,7 @@ const CreateOrder: React.FC = () => {
           <Button type ="primary"
             disabled={isSubmitting}
           >
-          {isSubmitting ? "Placing Order...." : "Order Now"}
+            {isSubmitting ? "Placing Order...." : "Order now from " + String(formatCurrency(totalPrice))}
         </Button>
         </div>
       </Form>

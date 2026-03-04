@@ -1,4 +1,4 @@
-import type { Order } from "../feautures/order/OrderActionTypes";
+import type { Order } from "../feautures/order/OrderTypes";
 
 const API_URL = "https://react-fast-pizza-api.jonas.io/api";
 

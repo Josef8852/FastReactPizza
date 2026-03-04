@@ -17,7 +17,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
       </p>
       <div className="flex justify-between items-center sm:gap-6">
         <p className="text-sm font-bold">{formatCurrency(totalPrice)}</p>
-        <ControlItem pizzaId={pizzaId}/>
+        <ControlItem quantity={quantity} pizzaId={pizzaId}/>
       </div>
     </li>
   );

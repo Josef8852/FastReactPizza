@@ -17,7 +17,6 @@ const Order: React.FC = () => {
     id,
     status,
     priority,
-    priorityPrice,
     orderPrice,
     estimatedDelivery,
     cart,
@@ -30,8 +29,8 @@ const Order: React.FC = () => {
         <h2 className="text-xl font-semibold">Order #{id} Status</h2>
 
         <div className="space-x-2">
-          {priority && <span className="bg-red-500 rounded-full py-1 px-3 text-sm uppercase font-semibold
-            text-red-50 tracking-wide">Priority </span>}
+          {priority ?  <span className="bg-red-500 rounded-full py-1 px-3 text-sm uppercase font-semibold
+            text-red-50 tracking-wide">Priority </span> : null}
           <span className="bg-green-500 rounded-full py-1 px-3 text-sm uppercase font-semibold
             text-green-50 tracking-wide">{status} order</span>
         </div>
@@ -48,13 +47,12 @@ const Order: React.FC = () => {
       
       <ul className="divide-stone-200 divide-y border-b border-t">
         {cart.map((item : OrderItemObj) => <OrderItem item={item} key={item.pizzaId} />)}
-        {console.log(cart)}
       </ul>
 
       <div className="space-y-2 bg-stone-200 py-5 px-6"> 
         <p className="text-sm font-medium text-stone-600">Price pizza: {formatCurrency(orderPrice)}</p>
-        {priority && <p className="text-sm font-medium text-stone-600">Price priority: {formatCurrency(priorityPrice)}</p>}
-        <p className="font-bold">To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}</p>
+        {priority && <p className="text-sm font-medium text-stone-600">Price priority: {formatCurrency(orderPrice*0.2)} 20% of Order</p>}
+        <p className="font-bold">To pay on delivery: {formatCurrency(orderPrice + orderPrice*0.2)}</p>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ export type Order = {
   address: string,
   priority: boolean,
   cart: Array<CartItemObj>,
+  
 }
 
 export type OrderErrors = {

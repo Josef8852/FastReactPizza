@@ -25,5 +25,5 @@ export interface LinkButtonProps {
 
 export interface ControlItemProps {
   pizzaId: number;
-  quantity? : number
+  quantity : number
 }
