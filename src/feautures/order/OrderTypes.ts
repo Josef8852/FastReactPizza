@@ -1,17 +1,11 @@
- type CartIem = {
-  pizzaId: number,
-  name: string,
-  quantity: number,
-  unitPrice: number,
-  totalPrice: number,
-}
+import { type CartItemObj } from "../cart/CartTypes"
 
 export type Order = {
   customer: string,
   phone: number,
   address: string,
   priority: boolean,
-  cart: Array<CartIem>,
+  cart: Array<CartItemObj>,
 }
 
 export type OrderErrors = {

@@ -1,6 +1,6 @@
 
 
-type CartItemObj = {
+export type CartItemObj = {
   pizzaId: number,
   name: string,
   quantity: number,
@@ -10,4 +10,9 @@ type CartItemObj = {
 
 export interface CartItemProps {
   item : CartItemObj
+}
+
+
+export type CartInitState = {
+  cart: Array<CartItemObj>;
 }

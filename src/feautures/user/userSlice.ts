@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getAddress } from "../../services/apiGeocoding";
-import type { State } from "./UserTypes";
+import type { UserInitState } from "./UserTypes";
 
 const getPosition = () => {
   return new Promise(function (resolve, reject) {
@@ -25,7 +25,7 @@ const  fetchAddress = async () => {
 }
 
 
-const initialState : State = {
+const initialState : UserInitState = {
   username : ""
 }
 
