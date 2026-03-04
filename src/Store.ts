@@ -8,6 +8,6 @@ const Store = configureStore({
   }
 });
 
-export type RootState = ReturnType<typeof Store.getState>;
+export type MainState = ReturnType<typeof Store.getState>;
 
 export default Store;

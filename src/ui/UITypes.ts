@@ -2,7 +2,7 @@
 
 
 export interface ButtonProps {
-  children: string
+  children: string[] | string 
   disabled?: boolean;
   route?: string;
    type : keyof Styles
