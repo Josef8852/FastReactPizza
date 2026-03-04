@@ -9,6 +9,6 @@ const Store = configureStore({
   }
 });
 
-export type MainState = ReturnType<typeof Store.getState>;
+
 
 export default Store;

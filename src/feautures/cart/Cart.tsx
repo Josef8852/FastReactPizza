@@ -2,7 +2,7 @@ import LinkButton from '../../ui/LinkButton';
 import Button from '../../ui/Button';
 import CartItem from './CartItem';
 import { useSelector } from 'react-redux';
-import type { MainState } from '../../Store';
+import type { MainState } from '../../StoreTypes';
 
 
 const fakeCart = [

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { type ButtonProps, type Styles } from "./UITypes";
 
 
-const Button: React.FC<ButtonProps> = ({ children, disabled, route  , type}) => {
+const Button: React.FC<ButtonProps> = ({ children, disabled, route  , type ,onClick}) => {
   
 
 
@@ -55,6 +55,11 @@ const Button: React.FC<ButtonProps> = ({ children, disabled, route  , type}) => 
   }
   
   if (route) return (<Link to={route} className={styles[type]} >{children}</Link>)
+  
+  if(onClick) return ( <button onClick={onClick} disabled={disabled} className={styles[type]} >
+  {children}
+  </button>)
+  
   
   return (
   <button disabled={disabled} className={styles[type]} >

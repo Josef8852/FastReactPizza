@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form, useActionData, useNavigation } from "react-router-dom";
 import Button from "../../ui/Button";
 import { useSelector } from "react-redux";
-import type { MainState } from "../../Store";
+import type { MainState } from "../../StoreTypes";
 
 
 const fakeCart = [

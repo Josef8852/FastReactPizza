@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import type { MainState } from "../../Store";
+import type { MainState } from "../../StoreTypes";
 
 
 const UserName: React.FC = () => {
