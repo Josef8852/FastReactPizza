@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import CreateUser from "../feautures/user/CreateUser";
-import type { MainState } from "../Store";
+import type { MainState } from "../StoreTypes";
 import Button from "./Button";
 
 

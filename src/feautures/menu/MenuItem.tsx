@@ -1,14 +1,18 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
 import type { MenuItemProps } from "./MenuTypes";
 import { addItem } from "../cart/cartSlice";
+import { getcurrentQuantity } from "../cart/cartSelectors";
+import ControlItem from "../../ui/ControlItem";
 
 const MenuItem: React.FC<MenuItemProps> = ({ pizza }) => {
   
   const dispatch = useDispatch()
   
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
+  
+  const currentQuantity = useSelector(getcurrentQuantity(id));
 
   const handleAddToCart = () : void  => {
     
@@ -24,6 +28,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ pizza }) => {
     
   }
   
+ 
   
   return (
     <li className="flex gap-4 py-2">
@@ -33,7 +38,8 @@ const MenuItem: React.FC<MenuItemProps> = ({ pizza }) => {
         <p className="text-sm italic text-stone-500 capitalize">{ingredients.join(', ')}</p>
         <div className="mt-auto flex items-center justify-between">
           {!soldOut ? <p className="text-sm">{formatCurrency(unitPrice)}</p> : <p className="text-sm uppercase font-medium text-stone-500">Sold out</p>}
-          {!soldOut ? <Button onClick={handleAddToCart} type="small">Add to Cart</Button> : null}
+          {!soldOut && currentQuantity > 0 ? <ControlItem pizzaId={id} quantity = {currentQuantity} /> : null}
+          {!soldOut && !currentQuantity  ?  <Button onClick={handleAddToCart} type="small">Add to Cart</Button> : null}
         </div>
       </div>
     </li>

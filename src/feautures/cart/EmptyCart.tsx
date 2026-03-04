@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
+import LinkButton from "../../ui/LinkButton";
 
 const EmptyCart : React.FC = () => {
   return (
-    <div>
-      <Link to="/menu">&larr; Back to menu</Link>
+    <div className="mt-5 py-3 px-4">
+      <LinkButton route="/menu">&larr; Back to menu</LinkButton>
 
-      <p>Your cart is still empty. Start adding some pizzas :)</p>
+      <p className='mt-5'>Your cart is still empty. Start adding some pizzas :)</p>
     </div>
   );
 }

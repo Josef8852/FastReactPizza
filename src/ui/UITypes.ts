@@ -5,6 +5,7 @@ export type Styles = {
   primary: string;
   small: string;
   secondary: string; 
+  round: string;
 }
 
 type handleClick = () => void;
@@ -20,4 +21,9 @@ export interface ButtonProps {
 export interface LinkButtonProps {
   children: string; 
   route: string;
+}
+
+export interface ControlItemProps {
+  pizzaId: number;
+  quantity? : number
 }

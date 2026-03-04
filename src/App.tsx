@@ -13,7 +13,7 @@ const router = createBrowserRouter([
   {
      // Layout Route
     element: <AppLayout />,
-    errorElement : <Error/>  ,
+    errorElement: <Error />,
     children: [ // Nested Routes
       {
         path: "/",

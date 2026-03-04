@@ -8,7 +8,7 @@ import Store from './Store.ts'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Provider store={Store} >
+    <Provider store={Store}  >
           <App />
     </Provider>
   </StrictMode>,

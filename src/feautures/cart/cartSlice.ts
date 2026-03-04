@@ -30,11 +30,16 @@ const cartSlice = createSlice({
       if (!item || !item.quantity) return; 
       item.quantity--;
       item.totalPrice = item.quantity * item.unitPrice;
+      
+      if (item.quantity === 0) {
+        cartSlice.caseReducers.removeItem(state, action);
+      }
     },
     
     clearCart(state) {
       state.cart = [];
     }
+    
     
   }
 });
