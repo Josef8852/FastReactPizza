@@ -33,4 +33,16 @@ This project demonstrates modern React development practices such as state manag
 ---
 
 # 📂 Project Structure
-
+FastReactPizza
+│
+├── public/
+├── src/
+│   ├── features/
+│   ├── services/
+│   ├── ui/
+│   └── utils/
+│
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── README.md
