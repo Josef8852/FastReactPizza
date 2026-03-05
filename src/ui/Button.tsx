@@ -57,7 +57,7 @@ const Button: React.FC<ButtonProps> = ({ children, disabled, route  , type ,onCl
   
   if (route) return (<Link to={route} className={styles[type]} >{children}</Link>)
   
-  if(onClick) return ( <button onClick={onClick} disabled={disabled} className={styles[type]} >
+  if (onClick) return (<button type="button"  onClick={onClick} disabled={disabled} className={styles[type]} >
   {children}
   </button>)
   

@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Form, useActionData, useNavigation } from "react-router-dom";
 import Button from "../../ui/Button";
-import { useSelector } from "react-redux";
-import type { MainState } from "../../StoreTypes";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, MainState } from "../../StoreTypes";
 import { selectCart } from "../cart/cartSelectors";
 import EmptyCart from "../cart/EmptyCart";
 import { getTotalCartPrice } from "../cart/cartSelectors";
 import { formatCurrency } from "../../utils/helpers";
+import { fetchAddressThunk } from "../user/userSlice";
 
 
 const CreateOrder: React.FC = () => {
@@ -16,8 +17,10 @@ const CreateOrder: React.FC = () => {
   const isSubmitting = navigation.state === "submitting";
 
   const formErrors = useActionData();
+  
+  const dispatch = useDispatch<AppDispatch>();
     
-   const username  = useSelector((state : MainState) => state.user.username);
+  const { username , address , position , status , error }  = useSelector((state : MainState) => state.user);
 
   const [withPriority, setWithPriority] = useState<boolean>(false);
   
@@ -30,16 +33,17 @@ const CreateOrder: React.FC = () => {
   const cart = useSelector(selectCart);
 
    
-
-  
   if (!cart.length) return <EmptyCart />;
   
- 
+  
+  const handleLocation = (): void => {
+    dispatch(fetchAddressThunk())
+  }
 
   return (
     <div className="py-6 px-4">
       <h2 className="text-xl font-semibold mb-8">Ready to order? Let's go!</h2>
-
+      
       <Form method="POST" action="/order/new">
         <div className="mb-5 flex gap-2 flex-col sm:flex-row sm:items-center">
           <label className="sm:basis-40">First Name</label>
@@ -56,11 +60,12 @@ const CreateOrder: React.FC = () => {
 
         <div className="mb-5 flex gap-2 flex-col sm:flex-row sm:items-center">
           <label className="sm:basis-40">Address</label>
-          <div  className="grow">
-            <input className="input w-full" type="text" name="address" required />
+          <div className="grow flex gap-2">
+            <input className="input w-full" defaultValue={address} type="text" name="address" required />
+            {!position.latitude && !position.longitude ? <Button onClick={handleLocation} type="small">Get Position</Button> : null}
           </div>
         </div>
-
+            {status === "error" ? <p className="text-xs mt-2 text-red-700 bg-red-100 p-2 rounded-md">{error}</p> : null}
         <div className="mb-12 flex gap-5 items-center">
           <input
             type="checkbox"
@@ -70,11 +75,12 @@ const CreateOrder: React.FC = () => {
             className="h-6 w-6 accent-yellow-400 focus:ring focus:ring-yellow-400 focus:ring-offset-2 focus:outline-none"
             onChange={(e) => setWithPriority(e.target.checked)}
           />
-          <label className="font-medium" htmlFor="priority">Want to yo give your order priority?</label>
+          <label className="font-medium my-5" htmlFor="priority">Want to yo give your order priority?</label>
         </div>
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
+          <input type="hidden" name="cart" value={`${position.latitude},${position.longitude}`} />
           <Button type ="primary"
             disabled={isSubmitting}
           >
