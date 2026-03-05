@@ -1,5 +1,7 @@
 # 🍕 Fast React Pizza
 
+[Live Demo](https://reactkitchen.netlify.app)
+
 A modern pizza ordering web application built with **React**, **Redux Toolkit**, **React Router**, and **Tailwind CSS**.  
 Users can browse a dynamic pizza menu, add items to a cart, place orders, and track their order status.
 
