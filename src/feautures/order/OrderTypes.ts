@@ -1,12 +1,12 @@
 import { type CartItemObj } from "../cart/CartTypes"
 
-export type Order = {
+export type OrderType = {
   customer: string,
   phone: number,
   address: string,
   priority: boolean,
   cart: Array<CartItemObj>,
-  
+  id: string;
 }
 
 export type OrderErrors = {
@@ -29,4 +29,3 @@ export interface OrderItemProps {
   isLoadingIngredients: boolean;
   ingredients : Array<string>
 }
-

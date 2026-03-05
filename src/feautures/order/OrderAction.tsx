@@ -1,7 +1,7 @@
 import { redirect, type ActionFunctionArgs } from "react-router-dom"
 import { createOrder } from "../../services/apiRestaurant";
 import { isValidPhone } from "../../utils/helpers";
-import { type OrderErrors ,type Order } from "./OrderTypes";
+import { type OrderErrors ,type OrderType } from "./OrderTypes";
 import Store from "../../Store";
 import { clearCart } from "../cart/cartSlice";
 
@@ -15,12 +15,13 @@ export const OrderAction = async ({ request }: ActionFunctionArgs): Promise<Resp
   );
 
 
-  const order : Order = {
+  const order : OrderType = {
     address : data.address ,
     cart: JSON.parse(data.cart) ,
     priority: data.priority === "true",
     phone: Number(data.phone),
-    customer: data.customer
+    customer: data.customer,
+    id: data.id
   }
 
   const errors: OrderErrors = {}
@@ -40,6 +41,7 @@ export const OrderAction = async ({ request }: ActionFunctionArgs): Promise<Resp
     return errors;
   }
   
-  
  
 } 
+
+

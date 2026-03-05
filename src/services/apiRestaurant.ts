@@ -1,4 +1,4 @@
-import type { Order } from "../feautures/order/OrderTypes";
+import type { OrderType } from "../feautures/order/OrderTypes";
 
 const API_URL = "https://react-fast-pizza-api.jonas.io/api";
 
@@ -19,7 +19,7 @@ export const getOrder = async (id: string) => {
   return data;
 };
 
-export const createOrder = async (newOrder: Order) => {
+export const createOrder = async (newOrder: OrderType) => {
   try {
     const res = await fetch(`${API_URL}/order`, {
       method: "POST",
