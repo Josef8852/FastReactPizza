@@ -30,19 +30,5 @@ This project demonstrates modern React development practices such as state manag
 	<img width="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/vite.png" alt="Vite" title="Vite"/>
 </div>
 
----
 
-# 📂 Project Structure
-FastReactPizza
-│
-├── public/
-├── src/
-│   ├── features/
-│   ├── services/
-│   ├── ui/
-│   └── utils/
-│
-├── package.json
-├── tsconfig.json
-├── vite.config.ts
-└── README.md
+
