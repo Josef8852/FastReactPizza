@@ -33,4 +33,13 @@ This project demonstrates modern React development practices such as state manag
 </div>
 
 
+## Screenshots
 
+### Home Page
+![Home Page](screenshots/home.png)
+
+### Menu Page
+![Menu Page](screenshots/menu.png)
+
+### Order Page
+![Order Page](screenshots/order.png)
